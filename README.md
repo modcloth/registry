@@ -11,9 +11,10 @@ curl http://bower.heroku.com/packages/jquery
   {"name":"jquery","url":"git://github.com/jquery/jquery.git"}
 ```
 ## Unregister package
+```bash
+curl http://bower.heroku.com/packages/jquery -v -X DELETE
+```
 
-There is no direct way to unregister a package yet. For now, you can [request a
-package be unregistered](https://github.com/bower/bower/issues/120).
 
 ## License
 
