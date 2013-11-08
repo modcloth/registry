@@ -71,14 +71,16 @@ get '/packages/:name' do
 end
 
 delete '/packages/:name' do
-  package  = Package[:name => params[:name]]
+  begin
+    package  = Package[:name => params[:name]]
 
-  return 404 unless package
+    return 404 unless package
 
-  package.delete
-  200
-rescue Sequel::DatabaseError
-  406
+    package.delete
+    200
+  rescue Sequel::DatabaseError
+    406
+  end
 end
 
 get '/packages/search/:name' do
