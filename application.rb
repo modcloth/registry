@@ -70,6 +70,17 @@ get '/packages/:name' do
   package.to_json
 end
 
+delete '/packages/:name' do
+  package  = Package[:name => params[:name]]
+
+  return 404 unless package
+
+  package.delete
+  200
+rescue Sequel::DatabaseError
+  406
+end
+
 get '/packages/search/:name' do
   packages = Package.filter(:name.ilike("%#{params[:name]}%")).order(:hits.desc)
   packages.all.to_json
